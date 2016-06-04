@@ -1,0 +1,53 @@
+<div class="container">
+    <h2 class="text-center">List products</h2>
+    <div class="row">
+        Sort by
+        <button 
+            class="btn btn-default active"
+            type="button" 
+            ng-click="orderProducts('name')"
+            ng-class="{active: orderBy ==='name'}"
+            >Name</button>
+        <button 
+            class="btn btn-default" 
+            type="button" 
+            ng-click="orderProducts('amount')"
+            ng-class="{active: orderBy ==='amount'}"
+            >Amount</button>
+        <button 
+            class="btn btn-default" 
+            type="button" 
+            ng-click="orderProducts('size')"
+            ng-class="{active: orderBy ==='size'}"
+            >Size</button>
+    </div>
+    <div class="row" style="padding:20px"></div>
+    <div class="row">
+            <!-- ITEM -->
+            <div class="col-lg-3 col-sm-3" ng-repeat="p in products | orderObjectBy:orderBy" style="padding-bottom:20px">
+                    <div class="shop-item">
+                            <div class="thumbnail">
+                                    <!-- product image(s) -->
+                                    <a class="shop-item-image" href="/show/{{p.id}}" title="{{p.name}}">
+                                        <img class="img-responsive" ng-src="{{p.picture || 'images/No_Image_Available.png' }}" alt="{{p.name}}" />
+                                    </a>
+                                    <!-- /product image(s) -->
+                            </div>				
+                            <div class="shop-item-summary text-center">
+                                <a class="shop-item-image" href="/show/{{p.id}}" title="{{p.name}}">
+                                    <h4>{{p.name}}</h4>	
+                                </a>
+                                    <!-- price -->
+                                    <div class="shop-item-price">
+                                        <span class="badge">{{p.amount}} &euro;</span>
+                                    </div>
+                                    <!-- /price -->
+                                    Size: {{p.size}} <br />
+                                    <button class="btn btn-danger" type="button" ng-click="removeProduct(p.id)">Remove</button>
+                            </div>
+                    </div>
+            </div>
+            <!-- ITEM -->
+
+    </div>
+</div>

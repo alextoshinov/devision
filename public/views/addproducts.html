@@ -1,0 +1,128 @@
+<div class="container">
+	<form mmethod="post" ng-submit="addProduct()" name="productForm">
+	  <div class="form-group">
+              <label for="Name">Name<span>*</span></label>
+	    <input 
+                type="text"
+                class="form-control" 
+                id="Name" 
+                placeholder="Name" 
+                ng-model="productData.name" 
+                required 
+                autofocus/>
+	    <div class="help-block text-danger" ng-if="productData.name.$dirty" ng-messages="productData.name.$error">
+                <div ng-message="required" >You must enter name.</div>
+            </div>
+	  </div>
+	  
+	  <div class="form-group">
+	    <label>Description</label>
+	    <textarea class="form-control" rows="3" ng-model="productData.description"></textarea>
+	  </div>
+	  <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <div class="input-group-addon">&euro;</div>
+                        <input type="number" required name="amount" class="form-control" id="Amount" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" placeholder="Amount" ng-model="productData.amount">
+                        <div class="input-group-addon">.00</div>
+                        <span  ng-show="productData.amount.$error.pattern">Not valid amount!</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">		  			
+                        <select class="form-control" ng-model="productData.size" required>
+                                <option value="">Size</option>
+                                <option value="44">44 - XXL</option>
+                                <option value="42">42 - XL</option>
+                                <option value="40">40 - L</option>
+                                <option value="38">38 - M</option>
+                                <option value="36">36 - S</option>
+                                <option value="34">34 - XS</option>
+                                <option value="32">32 - XXS</option>
+                        </select>
+                    </div>
+                </div>
+	</div>
+	<div class="row">
+					<div class="col-md-12 col-sm-12">
+						<label class="control-label">Picture for product</label>
+					</div>
+                    <div class="col-md-3 col-sm-4">
+                        <div class="thumbnail">
+                            <img class="img-responsive" ng-src="{{productData.picture || 'images/No_Image_Available.png' }}" alt="" />
+                        </div>
+                        <input
+                            type="file"
+                               id="file"
+                               nv-file-select="{ alias: 'picturePic' }"
+                               uploader="uploader"
+                               class="filestyle"
+                            />
+                    </div>
+                    <div class="col-md-9 col-sm-8">
+                        <div ng-if="uploader.queue.length === 0" nv-file-drop="{ alias: 'picturePic' }" uploader="uploader" class="well avatar-drop-zone">
+                            Drop zone for picture image - drag and drop your picture here
+                            <p class="red">Recommended resolution - 300 x 300 px</p>
+                        </div>
+                        <table class="table">
+                            <thead ng-if="uploader.queue.length > 0">
+                                <tr>
+                                    <th width="50%">Name</th>
+                                    <th ng-show="uploader.isHTML5">Size</th>
+                                    <th ng-show="uploader.isHTML5">Progress</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in uploader.queue">
+                                    <td>
+                                        <strong>{{ item.file.name }}</strong>
+                                        <!-- Image preview -->
+                                        <!--auto height-->
+                                        <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+                                        <!--auto width-->
+                                        <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, width: 150  }"></div>
+                                        <!--fixed width and height -->
+                                        <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+                                    </td>
+                                    <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                    <td ng-show="uploader.isHTML5">
+                                        <div class="progress" style="margin-bottom: 0;">
+                                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                        <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                        <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                    </td>
+                                    <td nowrap>
+                                        <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                            <span class="glyphicon glyphicon-upload"></span> Upload
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                            <span class="glyphicon glyphicon-trash"></span> Remove
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="picture" ng-model="productData.picture" value="{{productData.picture}}" />
+                    </div>
+                </div>
+                  
+
+            debug: <pre>{{productData}}</pre>
+
+	  
+	  <div class="form-group">
+                <button type="submit" class="btn btn-default" ng-disabled="productData.$invalid">Add new product</button>
+	  </div>		
+	</form>
+</div>
+
