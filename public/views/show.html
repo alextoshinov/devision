@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <h2 class="text-center">Product details</h2>
+        <div class="col-lg-5 col-sm-5">
+            <div class="thumbnail">
+                <img class="img-responsive" ng-src="{{product.picture || 'images/No_Image_Available.png' }}" alt="{{product.name}}" />
+            </div>
+        </div>
+        <div class="col-lg-7 col-sm-7">
+            <h2 class="text-center">{{product.name}}</h2>
+            <p>{{product.description}}</p>
+            <!-- price -->
+            <div class="shop-item-price">
+                <span class="badge">{{product.amount}} &euro;</span>
+            </div>
+            <!-- /price -->
+            Size: {{product.size}}
+        </div>
+    </div>
+</div>
