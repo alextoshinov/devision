@@ -22,8 +22,15 @@ DB_PASSWORD=alex
 7. Go to http://localhost:8000
 
 # Screenshots
-## List products with sorting and remove
+### List products with sorting and remove
 [List products] (https://github.com/alextoshinov/devision/blob/master/devision-list-products.png)
+
+### Add product
+[Add product] (https://github.com/alextoshinov/devision/blob/master/devision-add-product.png)
+
+### Product details
+[product details] (https://github.com/alextoshinov/devision/blob/master/devision-product-details.png)
+
 # 5 tasks
 Please see console.info browser for results [Demo in Fiddle] (https://jsfiddle.net/g8s37cch/3/)
 
