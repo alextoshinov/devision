@@ -24,7 +24,7 @@ DB_PASSWORD=alex
 # Screenshots
 
 # 5 tasks
-Please see console.info browser for results [Demo] (https://jsfiddle.net/g8s37cch/3/)
+Please see console.info browser for results [Demo in Fiddle] (https://jsfiddle.net/g8s37cch/3/)
 
 ```javascript
 /******************************** task 1 *******************************************/
