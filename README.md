@@ -11,7 +11,8 @@ Tokenizer PHP Extension
 
 # Installation
 1. Clone this repository in your web folder
-2. Go to devision folder and edit .env file : DB_DATABASE=devision
+2. Go to devision folder and edit .env file : 
+DB_DATABASE=devision
 DB_USERNAME=root
 DB_PASSWORD=alex
 3. Import sql dump from sql/devision.sql to your new database
@@ -19,3 +20,6 @@ DB_PASSWORD=alex
 5. In root folder project run:  php artisan cache:clear  and  php artisan config:cache 
 6. Start php server by: php artisan serve
 7. Go to http://localhost:8000
+
+# Screenshots
+
